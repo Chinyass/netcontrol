@@ -354,7 +354,5 @@ class Snmp:
             return (True,None)
 
 if __name__ == '__main__':
-    s = Snmp('10.3.0.27', 'private_set')
-    oids = '1.3.6.1.2.1.17.7.1.2.2.1.2'
-    print( s.walk_untill_value_contains(oids,'0') )
+    pass
         
