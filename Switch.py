@@ -121,6 +121,7 @@ if __name__ == '__main__':
     
     a = Switch(ip,name,model,community,username,passwords,enable)
     
+    print("PING:",a.ping)
     print("MODEL: ",a.model)
     
     print('IFNAME: ',a.get_ifname('1'))
