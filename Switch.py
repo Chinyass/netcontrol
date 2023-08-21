@@ -115,15 +115,14 @@ if __name__ == '__main__':
     name = 'unknown'
     model = Model.Model.UNKNOWN
     community = settings.RW_COMMUNITY
-    username = settings.USERNAME
+    username = "admin"
     passwords: List[str] = settings.PASSWORDS
     enable = settings.ENABLE
-    
     a = Switch(ip,name,model,community,username,passwords,enable)
     
     print("PING:",a.ping)
     print("MODEL: ",a.model)
-    
+    '''
     print('IFNAME: ',a.get_ifname('1'))
     print('PORT status: ',a.get_port_status('1'))
     print('VLANS ON PORT ',a.get_vlans_on_port('12'))
@@ -136,7 +135,7 @@ if __name__ == '__main__':
     print('UPLINK PORT: ',a.get_uplink_port())
     '''
     
-    '''
+    
     #print('VLANS ON PORT ',a.get_vlans_on_port('49'))
     #print('SET TRUNK VLANS 11',a.set_trunk_vlans_on_port('49',['3774','3776']))
     #print('VLANS ON PORT ',a.get_vlans_on_port('49'))
@@ -144,7 +143,7 @@ if __name__ == '__main__':
     #print('SET ACCESS VLAN',a.set_access_vlan_on_port('1','3888'))
     #print('VLANS ON PORT ',a.get_vlans_on_port('1'))
     
-    #print('ARP TABLE',a.get_arp_table())
+    print('ARP TABLE',a.get_arp_table())
     #time.sleep(2)
     #print('SWITCHPORT MODE 1',a.get_switchport_mode_on_port('1'))
     #time.sleep(2)

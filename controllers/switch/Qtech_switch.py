@@ -417,7 +417,6 @@ class QSW2850_28_TELNET(TELNETController):
         for password in self.passwords:
             self.connection.write(self.to_bytes(password))
             index, m, output = self.connection.expect([b"login:", b"#"],timeout=3)
-          
             if index == 1:
                 break
             elif index == 0:

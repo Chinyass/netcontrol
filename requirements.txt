@@ -2,3 +2,4 @@ pysnmp==4.4.12
 pyasn1==0.4.8
 pythonping==1.1.4
 python-dotenv
+pyzabbix
