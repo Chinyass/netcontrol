@@ -192,6 +192,18 @@ class QSW4610_28(QSW2850_28):
     def __init__(self, snmp_con: Snmp, telnet_data: dict) -> None:
         super().__init__(snmp_con, telnet_data)
         self.telnet_con = QSW4610_28_TELNET(self.ports, **telnet_data)
+    
+    def get_uplink_port(self):
+        gateway_ip = '.'.join( self.snmp_con.host.split('.')[:-1] + ['254'] )
+        arp_table = self.telnet_con.get_arp_table()
+        gw = list(filter(lambda x: x['ip'] == gateway_ip,arp_table))
+        if not gw:
+            return None
+        
+        return gw[0]['port']
+        
+    
+
 
 class QSW4610_10(QSW4610_28):
     def __init__(self, snmp_con: Snmp, telnet_data: dict) -> None:

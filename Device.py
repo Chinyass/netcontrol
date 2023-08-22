@@ -20,6 +20,7 @@ class Device:
         
         self.ping: bool = False
         self.snmp_status: bool = False
+        self.uplink: str = None
         self.mac: str = None
         self.sysdescription: str = None
         

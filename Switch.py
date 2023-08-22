@@ -12,6 +12,11 @@ class Switch(Device):
     def __init__(self, ip: str, name: str, model: Model.Switch, communty: str = None, username: str = None, passwords: list = None, enable: str = None) -> None:
         super().__init__(ip, name, model, communty, username, passwords, enable)
         
+        self.not_error = None
+        self.connections = []
+        self.coordinates = {}
+        self.label = None
+
         if self.snmp_status:
             self._identify_model()
         
@@ -60,6 +65,10 @@ class Switch(Device):
     @_controller_required
     def get_self_mac(self) -> str:
         return self.controller.get_self_mac()
+    
+    @_controller_required
+    def get_self_mac_from_arp_router(self) -> str:
+        return self.controller.get_self_mac_from_arp_router()
     
     @_controller_required
     def get_port_from_mac(self,hexmac: str) -> str:
@@ -111,10 +120,10 @@ class Switch(Device):
     
 
 if __name__ == '__main__':
-    ip = '10.3.0.27'
+    ip = '10.9.1.31'
     name = 'unknown'
     model = Model.Model.UNKNOWN
-    community = settings.RW_COMMUNITY
+    community = settings.RO_COMMUNITY
     username = "admin"
     passwords: List[str] = settings.PASSWORDS
     enable = settings.ENABLE
@@ -122,18 +131,19 @@ if __name__ == '__main__':
     
     print("PING:",a.ping)
     print("MODEL: ",a.model)
-    '''
+
     print('IFNAME: ',a.get_ifname('1'))
     print('PORT status: ',a.get_port_status('1'))
     print('VLANS ON PORT ',a.get_vlans_on_port('12'))
     print('ACCESS VLANS ON PORT 1',a.get_access_vlan_on_port('1'))
     print('PORTS ON VLAN ',a.get_ports_on_vlan('2202'))
+    print('SELF MAC FROM GW: ',a.get_self_mac_from_arp_router())
     print('SELF MAC: ',a.get_self_mac())
     print('PORT FROM MAC',a.get_port_from_mac('a8:f9:4b:fd:c7:49'))
     print('INFO: ',a.get_all_info_ports())
     print('MAC GATEWAY',a.get_mac_gateway())
     print('UPLINK PORT: ',a.get_uplink_port())
-    '''
+    
     
     
     #print('VLANS ON PORT ',a.get_vlans_on_port('49'))
@@ -143,7 +153,7 @@ if __name__ == '__main__':
     #print('SET ACCESS VLAN',a.set_access_vlan_on_port('1','3888'))
     #print('VLANS ON PORT ',a.get_vlans_on_port('1'))
     
-    print('ARP TABLE',a.get_arp_table())
+    #print('ARP TABLE',a.get_arp_table())
     #time.sleep(2)
     #print('SWITCHPORT MODE 1',a.get_switchport_mode_on_port('1'))
     #time.sleep(2)

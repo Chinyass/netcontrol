@@ -196,11 +196,11 @@ class SwitchController:
        return ''.join( list(map(lambda x: hex(int(x,2))[2:],bin_values)) )
    
     
-    def get_self_mac_from_arp_router(self):
+    def get_self_mac_from_arp_router(self) -> str:
         gateway_ip = '.'.join( self.snmp_con.host.split('.')[:-1] + ['254'] )
         try:
             router = Router(gateway_ip,'gateway','unknown',settings.RO_COMMUNITY,settings.USERNAME_GATEWAY,settings.PASSWORD_GATEWAY,settings.ENABLE_GATEWAY)
-            return router.get_mac_from_ip(self.snmp_con.session.hostname)
+            return router.get_mac_from_ip(self.snmp_con.host)
         except Exception as e:
             print(e)
             return self.get_self_mac()

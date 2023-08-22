@@ -5,7 +5,7 @@ load_dotenv(find_dotenv())
 
 RO_COMMUNITY = os.getenv('RO_COMMUNITY')
 RW_COMMUNITY = os.getenv("RW_COMMUNITY")
-USERNAME = os.getenv("USERNAME")
+USERNAME = os.getenv("USERNAME1")
 PASSWORDS = os.getenv("PASSWORDS").split(',')
 ENABLE = os.getenv("ENABLE")
 USERNAME_GATEWAY= os.getenv("USERNAME_GATEWAY")
